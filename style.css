@@ -175,5 +175,55 @@ body {
     background-color: #444;
 }
 
+#winnerContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(7px);
+    background-color: rgba(245, 240, 225, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+#winner{
+    box-shadow: 0 4px 10px rgba(92, 58, 33, 0.3);
+    font-family: 'Press Start 2P', cursive; /* classic 8-bit retro font */
+    font-size: 3rem;
+    color: #ff00ff;
+    text-shadow: 2px 2px 0 #00ffff, 4px 4px 0 #000;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#winnerContainer.hidden{
+    display: none;
+}
+
+#reset{
+    padding: 12px 20px;
+    margin-top: 15px;
+    background-color: #100914;
+    color: #ff00ff;
+    text-shadow: 2px 2px 0 #00ffff, 4px 4px 0 #000;
+    border: none;
+    border-radius: 100%;
+    font-size: 4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.075s ease;
+}
+
+#reset:hover{
+    background-color: #444;
+}
 
 

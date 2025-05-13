@@ -22,7 +22,7 @@
 
       <div id="gameMode">
         <button class="mode gameStart singlePlayer">Single Player</button>
-        <button class="mode gameStart multiPlayer">Multiplayer</button>
+        <button class="mode gameStart multiPlayer" onclick="multiPlayer()">Multiplayer</button>
       </div>
     </div>
 
@@ -34,8 +34,8 @@
       </div>
 
       <div id="game">
-        <div id="1" class="case case1 classX">O</div>
-        <div id="2" class="case case2 classO">X</div>
+        <div id="1" class="case case1"></div>
+        <div id="2" class="case case2"></div>
         <div id="3" class="case case3"></div>
         <div id="4" class="case case4"></div>
         <div id="5" class="case case5"></div>
@@ -56,8 +56,10 @@
 
     </div>
 
-    
-    
+    <div id="winnerContainer" class="hidden">
+      <div id="winner" class="winner"></div>
+      <button id="reset" onclick="resetGame()"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+    </div>
 
 </body>
 </html>
