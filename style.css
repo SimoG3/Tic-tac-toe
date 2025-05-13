@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
 html, body {
     height: 100%;
     margin: 0;
@@ -133,15 +135,30 @@ body {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Silkscreen', cursive;
 }
 
 .case:hover{
     background-color: #444;
 }
 
+.classX{
+    color: rgb(197, 17, 17);
+    text-shadow: 5px 5px 0px #FF004D; /* Red shadow for X */
+}
+
+.classO{
+    color: rgb(90, 127, 255);
+    text-shadow: 4px 4px 0px #8db8db; /* Red shadow for 0 */
+}
+
 #toggleMusic{
     position: fixed;
-    bottom: 20px;   /* distance from bottom */
+    bottom: 40px;   /* distance from bottom */
     right: 20px;    /* distance from right */
     padding: 12px 20px;
     background-color: #100914;
@@ -157,4 +174,6 @@ body {
 #toggleMusic:hover{
     background-color: #444;
 }
+
+
 
