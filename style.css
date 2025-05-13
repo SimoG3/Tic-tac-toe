@@ -1,0 +1,141 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    background-image: url('images/layered-steps-haikei.svg');
+    background-size: cover;          /* or 'contain', or any %/px value */
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: 'Fredoka', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+/**headers**/
+
+#title{
+    font-family: 'Press Start 2P', cursive; /* classic 8-bit retro font */
+    font-size: 1.5rem;
+    color: #ff00ff;
+    text-shadow: 2px 2px 0 #00ffff, 4px 4px 0 #000;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#gameSelection{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.75rem;
+    color: #00ffff;
+    text-shadow: 1px 1px 0 #ff00ff, 2px 2px 0 #000;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+#gameMode{
+    display: flex;
+    gap: 20px;
+    margin: 10px;
+}
+
+.mode {
+    background: linear-gradient(145deg, #9445e6, #b84ef2); /* purple gradient */
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px;
+    box-shadow: 0 4px 10px rgba(148, 69, 230, 0.4);
+  }
+  
+  .mode:hover {
+    background: linear-gradient(145deg, #b84ef2, #9445e6);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(148, 69, 230, 0.6);
+  }
+  
+  .mode:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(148, 69, 230, 0.3);
+  }
+  
+
+/***gameboard***/
+
+#gameBoard{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; /* prevent interaction when hidden */
+    /*gap: 5px;*/
+}
+
+#gameBoard.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+  
+#gameBoard.hidden {
+    display: none;
+}
+
+#game {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 3px;
+    width: 100%;
+    height: 100vw;
+    max-width: 500px;
+    max-height: 500px;
+    margin: 0 auto;
+}
+
+.playerRow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+  
+.player{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.75rem;
+    color: #00ffff;
+    text-shadow: 1px 1px 0 #ff00ff, 2px 2px 0 #000;
+    text-align: center;
+    margin: 20px;
+}
+
+.case{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    background-color: #100914;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;               /* keeps cells square */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.case:hover{
+    background-color: #444;
+}
+
