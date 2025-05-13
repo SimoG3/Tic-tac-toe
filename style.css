@@ -139,3 +139,22 @@ body {
     background-color: #444;
 }
 
+#toggleMusic{
+    position: fixed;
+    bottom: 20px;   /* distance from bottom */
+    right: 20px;    /* distance from right */
+    padding: 12px 20px;
+    background-color: #100914;
+    color: #ff00ff;
+    border: none;
+    border-radius: 100px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.1s ease;
+}
+
+#toggleMusic:hover{
+    background-color: #444;
+}
+
