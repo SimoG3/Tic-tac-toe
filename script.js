@@ -6,6 +6,7 @@ const gameSelection = document.getElementById("gameSelection");
 const music = document.getElementById("bg-music");
 const toggleMusic = document.getElementById("toggleMusic");
 const icon = toggleMusic.querySelector("i");
+let cells = document.querySelectorAll(".case"); // use let instead of const
 
 document.addEventListener("DOMContentLoaded", () => {
   
@@ -43,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // gameplay
 // multiplayer
-const cells = document.querySelectorAll(".case");
 
 const playerX ="X";
 const playerO ="O";
@@ -58,21 +58,20 @@ function multiPlayer() {
   cells.forEach(cell =>{
     cell.addEventListener("click", () => {
 
-    if (cell.textContent === "") {
-      cell.textContent = currentPlayer;
-      cell.classList.add(fillStyle);
+      if (cell.textContent === "") {
+        cell.textContent = currentPlayer;
+        cell.classList.add(fillStyle);
 
-      checkWin(currentPlayer);
-      
-      if(checkDraw()) {
-        winner.innerText = "It's a Draw !"
-        winnerContainer.classList.remove("hidden");
-      };
+        checkWin(currentPlayer);
 
-      fillStyle = currentPlayer ==="X" ? classO : classX;
-      currentPlayer = currentPlayer === "X" ? "O" : "X";  
-    }
-
+        if(checkDraw()) {
+         winner.innerText = "It's a Draw !"
+         winnerContainer.classList.remove("hidden");
+        };
+ 
+        fillStyle = currentPlayer ==="X" ? classO : classX;
+        currentPlayer = currentPlayer === "X" ? "O" : "X";  
+      }
     })
   })
 }
@@ -110,7 +109,9 @@ function checkWin(player) {
 
 function disableBoard() {
   cells.forEach(cell => {
+    if(cell.textContent === ""){ cell.textContent = "."}
     cell.style.pointerEvents = "none";
+    currentPlayer = "X";
   })
 }
 
@@ -123,25 +124,92 @@ function checkDraw() {
 
 //single player
 function singlePlayer() {
+  cells.forEach(cell => {
+    cell.addEventListener("click", () => {
+      // Player move
+      if (cell.textContent === "") {
+        cell.textContent = "X";
+        cell.classList.add(classX);
+        checkWin("X");
 
+        if (checkDraw()) {
+          winner.innerText = "It's a Draw!";
+          winnerContainer.classList.remove("hidden");
+          return;
+        }
+
+        // Computer move after short delay
+        setTimeout(() => {
+          const computerIndex = emptyCell();
+
+          if (computerIndex !== -1) {
+            cells[computerIndex].textContent = "O";
+            cells[computerIndex].classList.add(classO);
+            checkWin("O");
+
+            if (checkDraw()) {
+              winner.innerText = "It's a Draw!";
+              winnerContainer.classList.remove("hidden");
+            }
+          }
+        }, 500); // delay to simulate thinking
+      }
+    });
+  });
 }
 
+// Returns index of a random empty cell or -1 if none
+function emptyCell() {
+  const emptyCells = [];
+
+  cells.forEach((cell, index) => {
+    if (cell.textContent === "") {
+      emptyCells.push(index);
+    }
+  });
+
+  if (emptyCells.length === 0) return -1;
+
+  const randomIndex = Math.floor(Math.random() * emptyCells.length);
+  return emptyCells[randomIndex];
+}
+
+
 // reset game
+function clearCellListeners() {
+  const newCells = [];
+
+  cells.forEach(cell => {
+    const newCell = cell.cloneNode(false); // Remove all children and listeners
+    cell.parentNode.replaceChild(newCell, cell);
+    newCells.push(newCell);
+  });
+
+  return newCells;
+}
+
 function resetGame() {
   game.classList.add("hidden");
   winnerContainer.classList.add("hidden");
   gameSelection.style.display = 'block';
-  gameButtons.forEach(btn => btn.style.display = 'block')
+  gameButtons.forEach(btn => btn.style.display = 'block');
 
   music.pause();
 
-  cells.forEach(cell => {
+  // Reset current player
+  currentPlayer = "X";
+  fillStyle = classX;
+
+  // Remove all event listeners and reset content
+  const newCells = clearCellListeners();
+
+  newCells.forEach(cell => {
     cell.style.pointerEvents = "auto";
     cell.textContent = "";
-    cell.classList.remove(classO);
-    cell.classList.remove(classX);
-  })
+    cell.classList.remove(classO, classX);
+  });
 
-
+  // Replace the global "cells" NodeList with the new one
+  cells = newCells;
 }
 

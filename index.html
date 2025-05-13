@@ -21,7 +21,7 @@
       <div>Select game mode:</div>
 
       <div id="gameMode">
-        <button class="mode gameStart singlePlayer">Single Player</button>
+        <button class="mode gameStart singlePlayer" onclick="singlePlayer()">Single Player</button>
         <button class="mode gameStart multiPlayer" onclick="multiPlayer()">Multiplayer</button>
       </div>
     </div>
@@ -45,9 +45,7 @@
         <div id="9" class="case case9"></div>
       </div>
 
-      <!--Game logic:
-      
-      -->
+      <!--Game logic-->
 
       <button id="toggleMusic"><i class="fa-solid fa-pause"></i></button>
       <audio id="bg-music" loop>
